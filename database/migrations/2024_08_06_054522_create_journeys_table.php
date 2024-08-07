@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('journeys', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('price');
+            $table->integer("seat");
+            $table->text('description');
             $table->timestamps();
         });
     }

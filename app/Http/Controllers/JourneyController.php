@@ -13,7 +13,8 @@ class JourneyController extends Controller
      */
     public function index()
     {
-        //
+        $journeys = Journey::all();
+        return view('journey.index', compact('journeys'));
     }
 
     /**
@@ -21,7 +22,7 @@ class JourneyController extends Controller
      */
     public function create()
     {
-        //
+        return view('journey.create');
     }
 
     /**
@@ -29,7 +30,14 @@ class JourneyController extends Controller
      */
     public function store(StoreJourneyRequest $request)
     {
-        //
+        // dd($request->all());
+        $journey = new Journey();
+        $journey->name = $request->name;
+        $journey->price = $request->price;
+        $journey->seat = $request->seat;
+        $journey->description = $request->description;
+        $journey->save();
+        return back();
     }
 
     /**
@@ -37,7 +45,7 @@ class JourneyController extends Controller
      */
     public function show(Journey $journey)
     {
-        //
+        return view('journey.detail', compact('journey'));
     }
 
     /**
@@ -45,7 +53,7 @@ class JourneyController extends Controller
      */
     public function edit(Journey $journey)
     {
-        //
+        return view('journey.edit', compact('journey'));
     }
 
     /**
@@ -53,7 +61,12 @@ class JourneyController extends Controller
      */
     public function update(UpdateJourneyRequest $request, Journey $journey)
     {
-        //
+        $journey->name = $request->name;
+        $journey->price = $request->price;
+        $journey->seat = $request->seat;
+        $journey->description = $request->description;
+        $journey->update();
+        return redirect()->route('journey.index');
     }
 
     /**
@@ -61,6 +74,7 @@ class JourneyController extends Controller
      */
     public function destroy(Journey $journey)
     {
-        //
+        $journey->delete();
+        return back();
     }
 }
