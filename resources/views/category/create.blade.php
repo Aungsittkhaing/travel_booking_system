@@ -15,6 +15,9 @@
             <form action="{{ route('category.store') }}" class="max-w-sm mx-auto" method="POST">
                 @csrf
                 <div class="mb-5">
+                    <h1 class="text-center text-2xl">Create Category</h1>
+                </div>
+                <div class="mb-5">
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900">
                         Category Name
                     </label>

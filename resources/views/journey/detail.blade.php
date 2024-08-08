@@ -14,6 +14,9 @@
     <div class="container mx-auto max-w-3xl">
         <div class="w-full max-w-md mx-auto bg-white shadow-lg rounded-lg p-8">
             <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800">
+                <div class="mb-5">
+                    <h1 class="text-center text-white text-2xl">Detail Journey</h1>
+                </div>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
                     ခရီးစဥ် = {{ $journey->name }}
                 </p>
@@ -22,6 +25,12 @@
                 </p>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
                     ၀ယ်ယူမည့်ခုံအရေအတွက် = {{ $journey->seat }}
+                </p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    Bus Class = {{ $journey->category->name }}
+                </p>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    Status = {{ $journey->status }}
                 </p>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
                     ခရီးသွားလိုသောအကြောင်းအရာ = {{ $journey->description }}

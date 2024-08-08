@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreJourneyRequest;
 use App\Http\Requests\UpdateJourneyRequest;
+use App\Models\Category;
 use App\Models\Journey;
 
 class JourneyController extends Controller
@@ -22,7 +23,8 @@ class JourneyController extends Controller
      */
     public function create()
     {
-        return view('journey.create');
+        $categories = Category::all();
+        return view('journey.create', compact('categories'));
     }
 
     /**
@@ -35,9 +37,11 @@ class JourneyController extends Controller
         $journey->name = $request->name;
         $journey->price = $request->price;
         $journey->seat = $request->seat;
+        $journey->category_id = $request->category_id;
+        $journey->status = $request->status;
         $journey->description = $request->description;
         $journey->save();
-        return back();
+        return redirect()->route('journey.index');
     }
 
     /**
@@ -53,7 +57,8 @@ class JourneyController extends Controller
      */
     public function edit(Journey $journey)
     {
-        return view('journey.edit', compact('journey'));
+        $categories = Category::all();
+        return view('journey.edit', compact('journey', 'categories'));
     }
 
     /**
@@ -64,6 +69,8 @@ class JourneyController extends Controller
         $journey->name = $request->name;
         $journey->price = $request->price;
         $journey->seat = $request->seat;
+        $journey->category_id = $request->category_id;
+        $journey->status = $request->status;
         $journey->description = $request->description;
         $journey->update();
         return redirect()->route('journey.index');
