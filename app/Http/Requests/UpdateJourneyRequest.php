@@ -22,7 +22,12 @@ class UpdateJourneyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|min:3',
+            'price' => 'required|numeric|min:2',
+            'seat' => 'required|numeric|min:1',
+            'category_id' => 'required',
+            'status' => 'required',
+            'description' => 'required|string|min:3'
         ];
     }
 }
