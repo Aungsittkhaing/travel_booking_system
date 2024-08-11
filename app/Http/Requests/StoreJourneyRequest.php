@@ -22,7 +22,7 @@ class StoreJourneyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|min:3',
+            'name' => 'required|min:3|unique:journeys,name',
             'price' => 'required|numeric|min:2',
             'seat' => 'required|numeric|min:1',
             'category_id' => 'required|string',
