@@ -6,12 +6,21 @@ use App\Http\Requests\StoreJourneyRequest;
 use App\Http\Requests\UpdateJourneyRequest;
 use App\Models\Category;
 use App\Models\Journey;
+use Illuminate\Http\Request;
 
 class JourneyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $journeys = Journey::where("name", "LIKE", "%{$query}%")
+            ->orWhere("status", "LIKE", "%{$query}%")
+            ->paginate(5);
+        return view('journey.index', compact('journeys'));
+    }
     public function index()
     {
         $journeys = Journey::paginate(5);
